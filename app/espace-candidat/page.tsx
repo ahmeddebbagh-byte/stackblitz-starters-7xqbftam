@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-// Composant Navbar (copie adaptée de la version Accueil)
+// --- LE COMPOSANT NAVBAR ---
 const Navbar = () => (
     <nav className="w-full py-5 px-6 md:px-10 flex justify-between items-center bg-[#F7FAFC] border-b border-gray-100 sticky top-0 z-50">
       <div className="flex items-center gap-2 text-emerald-800 font-bold text-xl tracking-tight">
@@ -18,14 +18,14 @@ const Navbar = () => (
         <Link href="/tarifs" className="hover:text-emerald-600 transition">Tarifs</Link>
       </div>
       
-      {/* Le bouton est ici pour la symétrie, mais le lien actif est dans la section Auth */}
+      {/* Le bouton est ici pour la symétrie */}
       <Link href="/espace-candidat" className="bg-emerald-700 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition shadow-lg shadow-emerald-100">
         Espace Candidat
       </Link>
     </nav>
 );
 
-// Composant de Formulaire
+// --- Composant de Formulaire (APOSTROPHES CORRIGÉES) ---
 const AuthForm = ({ isLogin }: { isLogin: boolean }) => (
     <form className="space-y-6">
         <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-6">
@@ -33,7 +33,7 @@ const AuthForm = ({ isLogin }: { isLogin: boolean }) => (
         </h2>
         
         {!isLogin && (
-            // Champ Nom/Prénom pour l'inscription
+            // Champ Nom/Prénom pour l&apos;inscription
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Nom et Prénom</label>
                 <input
@@ -84,6 +84,7 @@ const AuthForm = ({ isLogin }: { isLogin: boolean }) => (
 );
 
 
+// --- LE COMPOSANT PRINCIPAL ---
 export default function CandidateAreaPage() {
     const [isLogin, setIsLogin] = useState(true);
 
