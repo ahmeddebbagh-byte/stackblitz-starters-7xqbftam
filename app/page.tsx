@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-// --- 1. LA BARRE DE NAVIGATION ---
+// --- LE COMPOSANT NAVBAR ---
 const Navbar = () => (
   <nav className="w-full py-5 px-6 md:px-10 flex justify-between items-center bg-[#F7FAFC] border-b border-gray-100 sticky top-0 z-50">
     <div className="flex items-center gap-2 text-emerald-800 font-bold text-xl tracking-tight">
@@ -10,14 +10,14 @@ const Navbar = () => (
       <span>CareerPulse AI</span>
     </div>
     
-    {/* SECTION LIENS (ACCUEIL ACTIF) */}
+    {/* SECTION LIENS */}
     <div className="hidden md:flex gap-8 text-gray-600 font-medium text-sm">
       <Link href="/" className="text-emerald-600 transition">Accueil</Link> 
       <Link href="/comment-ca-marche" className="hover:text-emerald-600 transition">Comment ça marche</Link>
       <Link href="/tarifs" className="hover:text-emerald-600 transition">Tarifs</Link>
     </div>
     
-    {/* Bouton Espace Candidat (désormais un Link) */}
+    {/* Bouton Espace Candidat */}
     <Link 
       href="/espace-candidat" 
       className="bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition shadow-lg shadow-emerald-100"
@@ -27,7 +27,7 @@ const Navbar = () => (
   </nav>
 );
 
-// --- 2. LE COMPOSANT D'INTERRUPTION MODALE ---
+// --- LE COMPOSANT D'INTERRUPTION MODALE ---
 const AuthModal = ({ onClose }: { onClose: () => void }) => (
   <div className="fixed inset-0 bg-gray-900 bg-opacity-70 z-[100] flex items-center justify-center p-4" onClick={onClose}>
     <div 
@@ -57,12 +57,11 @@ const AuthModal = ({ onClose }: { onClose: () => void }) => (
 );
 
 
-// --- 3. LA SECTION PRINCIPALE & LOGIQUE API ---
+// --- LA SECTION PRINCIPALE & LOGIQUE API ---
 const Hero = () => {
   const [status, setStatus] = useState('idle');
   const [cvFile, setCvFile] = useState<File | null>(null);
   
-  // Simulation de l'état d'authentification et de l'affichage de la modale
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
   const [showAuthModal, setShowAuthModal] = useState(false);
 
@@ -75,13 +74,11 @@ const Hero = () => {
         return;
     }
     
-    // LOGIQUE D'INTERRUPTION : Si déconnecté, montre la modale
     if (!isAuthenticated) {
         setShowAuthModal(true);
         return; 
     }
     
-    // LOGIQUE API : Utilisateur authentifié
     setStatus('uploading');
 
     const form = e.currentTarget;
@@ -116,7 +113,6 @@ const Hero = () => {
   return (
     <div className="flex flex-col items-center text-center pt-16 pb-24 px-4 bg-[#F7FAFC] min-h-screen">
       
-      {/* AFFICHAGE CONDITIONNEL DE LA MODALE */}
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
       
       {/* Badge de promesse */}
@@ -125,11 +121,11 @@ const Hero = () => {
         <span>Résultats garantis sous 72h</span>
       </div>
       
-      {/* Titre Principal */}
+      {/* Titre Principal (APOSTROPHES CORRIGÉES) */}
       <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight max-w-4xl">
-        Ne cherchez plus l'emploi idéal.<br />
+        Ne cherchez plus l&apos;emploi idéal.<br />
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">
-          Laissez l'IA le chasser.
+          Laissez l&apos;IA le chasser.
         </span>
       </h1>
       
@@ -141,11 +137,11 @@ const Hero = () => {
       <div className="bg-white p-8 rounded-2xl shadow-2xl shadow-gray-200/50 border border-gray-100 w-full max-w-lg relative overflow-hidden transition-all mx-auto">
         
         {status === 'success' ? (
-          // --- ÉTAT : SUCCÈS ---
+          // --- ÉTAT : SUCCÈS (APOSTROPHE CORRIGÉE) ---
           <div className="py-8 animate-pulse flex flex-col items-center">
             <div className="text-6xl mb-4">✅</div>
             <h3 className="text-2xl font-bold text-gray-800 mb-2">Dossier reçu !</h3>
-            <p className="text-gray-500">L'analyse IA a commencé.</p>
+            <p className="text-gray-500">L&apos;analyse IA a commencé.</p>
             
             <div className="mt-8 w-full bg-gray-50 rounded-lg p-4 border border-gray-100 text-left">
               <div className="flex justify-between text-sm mb-1">
@@ -185,7 +181,7 @@ const Hero = () => {
                 <span className="text-sm font-medium text-gray-500">
                   {cvFile ? cvFile.name : 'Cliquez ou glissez votre CV ici'}
                 </span>
-                {cvFile && <span className="text-xs text-emerald-600 mt-1">Fichier prêt à l'envoi ✅</span>}
+                {cvFile && <span className="text-xs text-emerald-600 mt-1">Fichier prêt à l&apos;envoi ✅</span>}
               </label>
             </div>
 
@@ -229,7 +225,7 @@ const Hero = () => {
   );
 };
 
-// --- 4. LE RENDU FINAL ---
+// --- LE RENDU FINAL ---
 export default function Home() {
   return (
     <main className="min-h-screen font-sans text-gray-900 selection:bg-emerald-200 selection:text-emerald-900">
